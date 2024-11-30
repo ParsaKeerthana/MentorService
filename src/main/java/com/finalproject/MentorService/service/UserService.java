@@ -110,4 +110,8 @@ public class UserService {
     public List<FollowRequest> getFollowRequestForMentorIdAndStatus(String mentorId, String status) {
         return followRequestRepository.findByMentorIdAndStatus(mentorId, status);
     }
+
+    public void cancelFollowRequest(String requestId) {
+        followRequestRepository.deleteById(requestId);
+    }
 }

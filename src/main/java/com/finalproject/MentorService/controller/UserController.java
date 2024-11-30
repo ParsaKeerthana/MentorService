@@ -87,6 +87,18 @@ public class UserController {
         }
     }
 
+    @DeleteMapping("/followRequests/{requestId}")
+    public ResponseEntity<Void> cancelFollowRequest(@PathVariable String requestId) {
+        try {
+            userService.cancelFollowRequest(requestId);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        }
+    }
+
     @GetMapping("/users")
     public  ResponseEntity<List<User>> getAllUsers() {
         try {
