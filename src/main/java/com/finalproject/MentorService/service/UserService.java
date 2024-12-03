@@ -96,7 +96,7 @@ public class UserService {
     }
 
     public List<Message> findMessagesBetweenUsers(String senderId, String receiverId) {
-        return messageRepository.findBySenderIdAndReceiverId(senderId, receiverId);
+        return messageRepository.findMessagesBetweenUsers(senderId, receiverId);
     }
 
     public List<Message> findAllMessages() {
