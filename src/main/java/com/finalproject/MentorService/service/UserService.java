@@ -114,4 +114,28 @@ public class UserService {
     public void cancelFollowRequest(String requestId) {
         followRequestRepository.deleteById(requestId);
     }
+
+    public Mentor updateMentorProfile(String mentorId, Mentor updatedMentor) {
+        Mentor mentor = mentorRepository.findById(mentorId)
+                .orElseThrow(() -> new RuntimeException("Mentor not found with id: " + mentorId));
+        mentor.setName(updatedMentor.getName());
+        mentor.setEmail(updatedMentor.getEmail());
+        mentor.setLocation(updatedMentor.getLocation());
+        mentor.setSkills(updatedMentor.getSkills());
+        mentor.setProfilePicture(updatedMentor.getProfilePicture());
+        mentor.setCompany(updatedMentor.getCompany());
+        return mentorRepository.save(mentor);
+    }
+
+    public Mentee updateMenteeProfile(String mentorId, Mentee updatedMentee) {
+        System.out.println("Mentee ID: " + mentorId);
+        Mentee mentee = menteeRepository.findById(mentorId)
+                .orElseThrow(() -> new RuntimeException("Mentee not found with id: " + mentorId));
+        mentee.setName(updatedMentee.getName());
+        mentee.setEmail(updatedMentee.getEmail());
+        mentee.setLocation(updatedMentee.getLocation());
+        mentee.setSkills(updatedMentee.getSkills());
+        mentee.setProfilePicture(updatedMentee.getProfilePicture());
+        return menteeRepository.save(mentee);
+    }
 }

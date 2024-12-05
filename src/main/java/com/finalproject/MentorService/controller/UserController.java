@@ -256,5 +256,26 @@ public class UserController {
         return ResponseEntity.ok("Request received successfully");
     }
 
+    @PatchMapping("/mentors/{mentorId}")
+    public ResponseEntity<Mentor> updateMentorProfile(@PathVariable String mentorId, @RequestBody Mentor updatedMentor) {
+        try {
+            Mentor mentor = userService.updateMentorProfile(mentorId, updatedMentor);
+            return ResponseEntity.ok(mentor);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PatchMapping("/mentees/{menteeId}")
+    public ResponseEntity<Mentee> updateMenteeProfile(@PathVariable String menteeId, @RequestBody Mentee updatedMentee) {
+        System.out.println("Mentee ID: " + menteeId);
+        try {
+            Mentee mentee = userService.updateMenteeProfile(menteeId, updatedMentee);
+            return ResponseEntity.ok(mentee);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }
 
