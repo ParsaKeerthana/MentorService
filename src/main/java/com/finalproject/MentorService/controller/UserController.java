@@ -31,9 +31,12 @@ public class UserController {
     @PostMapping("/users")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         try {
+            // Attempt to register the user using the userService
             User createdUser = userService.registerUser(user);
+            // Return a 200 OK response with the created user
             return ResponseEntity.ok(createdUser);
         } catch (Exception e) {
+            // If an exception occurs, return a 409 Conflict response
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
                     .body(null);
@@ -43,10 +46,13 @@ public class UserController {
     @PostMapping("/mentors")
     public ResponseEntity<Mentor> registerAsMentor(@RequestBody Mentor mentor) {
         try {
+            //Attempt to register the mentor using the userService
             Mentor createdUser = userService.registerMentor(mentor);
+            // Return a 200 OK response with the created mentor
             return ResponseEntity.ok(createdUser);
         } catch (Exception e) {
             return ResponseEntity
+                    //If an exception occurs, return a 409 Conflict response
                     .status(HttpStatus.CONFLICT)
                     .body(null);
         }
@@ -66,10 +72,13 @@ public class UserController {
     @PostMapping("/followRequests")
     public ResponseEntity<FollowRequest> followUser(@RequestBody FollowRequest followRequest) {
         try {
+           //  Attempt to follow the user using the userService
             FollowRequest followRequests = userService.followRequest(followRequest);
+            // Return a 200 OK response with the created followRequest
             return ResponseEntity.ok(followRequests);
         } catch (Exception e) {
             return ResponseEntity
+                     //If an exception occurs, return a 409 Conflict response
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(null);
         }

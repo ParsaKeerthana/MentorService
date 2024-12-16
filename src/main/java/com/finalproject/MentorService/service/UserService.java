@@ -128,7 +128,6 @@ public class UserService {
     }
 
     public Mentee updateMenteeProfile(String mentorId, Mentee updatedMentee) {
-        System.out.println("Mentee ID: " + mentorId);
         Mentee mentee = menteeRepository.findById(mentorId)
                 .orElseThrow(() -> new RuntimeException("Mentee not found with id: " + mentorId));
         mentee.setName(updatedMentee.getName());
